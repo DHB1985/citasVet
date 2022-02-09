@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 
-import { Modal, Text, View, TextInput, ScrollView } from "react-native";
+import {
+  Modal,
+  Text,
+  View,
+  TextInput,
+  ScrollView,
+  Pressable,
+} from "react-native";
 
 import DatePicker from "react-native-date-picker";
 
 import { styles } from "./FormStyles";
 
-const Form = ({ modalVisible }) => {
+const Form = ({ modalVisible, setModalVisible}) => {
   const dataPatientStruct = {
     patient: "",
     owner: "",
@@ -26,6 +33,15 @@ const Form = ({ modalVisible }) => {
             Nueva {""}
             <Text style={styles.titleBold}>Cita</Text>
           </Text>
+
+          <Pressable 
+            style={styles.btnCancel}
+            onLongPress = {() => setModalVisible(!modalVisible)}
+          >
+            <Text style={styles.btnCancelText}>
+              X cancelar
+            </Text>
+          </Pressable>
 
           <View style={styles.inputContent}>
             <Text style={styles.label}>Nombre Paciente</Text>

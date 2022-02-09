@@ -27,13 +27,13 @@ const App = () => {
 
       <Pressable
         //onPress={newDateHandler}
-        onPress={() => setModalVisible(true)}
+        onPress={() => setModalVisible(!modalVisible)}
         style={styles.btnNewDate}
       >
         <Text style={styles.btnTextNewDate}>Nueva Cita</Text>
       </Pressable>
 
-      <Form modalVisible={modalVisible} />
+      <Form modalVisible={modalVisible} setModalVisible={setModalVisible}/>
     </View>
   );
 };
