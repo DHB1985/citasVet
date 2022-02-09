@@ -1,6 +1,10 @@
-import React, {useState} from 'react';
-import {Text, View, Button, Pressable, Modal} from 'react-native';
-import {styles} from './styles';
+/* eslint-disable prettier/prettier */
+import React, { useState } from "react";
+import { Text, View, Pressable } from "react-native";
+
+import Form from "./src/components/Form.js";
+
+import { styles } from "./styles";
 
 const App = () => {
   //Los Hooks se colocan en la parte superior, dentro de condicionales o después de un return
@@ -12,25 +16,24 @@ const App = () => {
   // }, 3000);
 
   // console.log(modalVisible);
-  //const newDateHandler = () => console.log('diste click...');
+  //const newDateHandler = () => console.log("diste click...");
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
-        Administrador de Citas {''}
+        Administrador de Citas {""}
         <Text style={styles.titleBold}>Veterinaria</Text>
       </Text>
 
       <Pressable
         //onPress={newDateHandler}
         onPress={() => setModalVisible(true)}
-        style={styles.btnNewDate}>
+        style={styles.btnNewDate}
+      >
         <Text style={styles.btnTextNewDate}>Nueva Cita</Text>
       </Pressable>
 
-      <Modal animationType="slide" visible={modalVisible}>
-        <Text>Desde Modal</Text>
-      </Modal>
+      <Form modalVisible={modalVisible} />
     </View>
   );
 };
