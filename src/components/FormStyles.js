@@ -31,4 +31,7 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     marginHorizontal: 30,
   },
+  symptomInput: {
+      height: 100,
+  }
 });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Modal,
   Text,
@@ -10,6 +10,16 @@ import {
 import { styles } from "./FormStyles";
 
 const Form = ({ modalVisible }) => {
+  const dataPatientStruct = {
+    patient: "",
+    owner: "",
+    email: "",
+    telephone: "",
+    symptom: "",
+  };
+
+  const [dataPatient, setDataPatient] = useState(dataPatientStruct);
+
   return (
     <Modal animationType="slide" visible={modalVisible}>
       <View style={styles.content}>
@@ -26,6 +36,10 @@ const Form = ({ modalVisible }) => {
               keyboardType="default"
               placeholder="Nombre Paciente..."
               placeholderTextColor={"#666"}
+              value={dataPatient.patient}
+              onChangeText={(text) =>
+                setDataPatient({ ...dataPatient, patient: text })
+              }
             />
           </View>
 
@@ -36,6 +50,10 @@ const Form = ({ modalVisible }) => {
               keyboardType="default"
               placeholder="Nombre Propietario..."
               placeholderTextColor={"#666"}
+              value={dataPatient.owner}
+              onChangeText={(text) =>
+                setDataPatient({ ...dataPatient, owner: text })
+              }
             />
           </View>
 
@@ -46,6 +64,10 @@ const Form = ({ modalVisible }) => {
               keyboardType="email-address"
               placeholder="e-mail Propietario..."
               placeholderTextColor={"#666"}
+              value={dataPatient.email}
+              onChangeText={(text) =>
+                setDataPatient({ ...dataPatient, email: text })
+              }
             />
           </View>
 
@@ -56,16 +78,27 @@ const Form = ({ modalVisible }) => {
               keyboardType="number-pad"
               placeholder="Teléfono Propietario..."
               placeholderTextColor={"#666"}
+              value={dataPatient.telephone}
+              onChangeText={(text) =>
+                setDataPatient({ ...dataPatient, telephone: text })
+              }
+              maxLength = {10}
             />
           </View>
 
           <View style={styles.inputContent}>
             <Text style={styles.label}>Síntomas</Text>
             <TextInput
-              style={styles.input}
+              style={[styles.input, styles.symptomInput]}
               keyboardType="default"
               placeholder="Síntomas Paciente..."
               placeholderTextColor={"#666"}
+              value={dataPatient.symptom}
+              onChangeText={(text) =>
+                setDataPatient({ ...dataPatient, symptom: text })
+              }
+              multiline={true}
+              numberOfLines={4}
             />
           </View>
         </ScrollView>
