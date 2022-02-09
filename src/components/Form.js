@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import {
-  Modal,
-  Text,
-  StyleSheet,
-  View,
-  TextInput,
-  ScrollView,
-} from "react-native";
+
+import { Modal, Text, View, TextInput, ScrollView } from "react-native";
+
+import DatePicker from "react-native-date-picker";
+
 import { styles } from "./FormStyles";
 
 const Form = ({ modalVisible }) => {
@@ -15,6 +12,7 @@ const Form = ({ modalVisible }) => {
     owner: "",
     email: "",
     telephone: "",
+    date: new Date(),
     symptom: "",
   };
 
@@ -82,8 +80,22 @@ const Form = ({ modalVisible }) => {
               onChangeText={(text) =>
                 setDataPatient({ ...dataPatient, telephone: text })
               }
-              maxLength = {10}
+              maxLength={10}
             />
+          </View>
+
+          <View style={styles.inputContent}>
+            <View style={styles.dateContent}>
+              <Text style={styles.label}>Fecha</Text>
+              <DatePicker
+                date={dataPatient.date}
+                locale="es"
+                timeZoneOffsetInMinutes={-180}
+                onDateChange={(date) =>
+                  setDataPatient({ ...dataPatient, date: date })
+                }
+              />
+            </View>
           </View>
 
           <View style={styles.inputContent}>

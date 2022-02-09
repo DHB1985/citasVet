@@ -33,5 +33,9 @@ export const styles = StyleSheet.create({
   },
   symptomInput: {
       height: 100,
-  }
+  },
+  dateContent: {
+    backgroundColor: "#FFF",
+    borderRadius: 10,
+  },
 });
