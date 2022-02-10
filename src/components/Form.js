@@ -16,6 +16,7 @@ import { styles } from "./FormStyles";
 
 const Form = ({ modalVisible, setModalVisible, setPatients, patients}) => {
   const dataPatientStruct = {
+    id: '',
     patient: "",
     owner: "",
     email: "",
@@ -35,7 +36,7 @@ const Form = ({ modalVisible, setModalVisible, setPatients, patients}) => {
       )
       return
     }
-
+    setDataPatient({...dataPatient, id: Date.now()})
     setPatients([...patients, dataPatient])
     setModalVisible(!modalVisible)
     setDataPatient(dataPatientStruct)

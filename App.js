@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from "react";
-import { Text, View, Pressable } from "react-native";
+import { Text, View, Pressable, FlatList } from "react-native";
 
 import Form from "./src/components/Form.js";
+import Patient from "./src/components/Patient.js";
 
 import { styles } from "./styles";
 
@@ -34,11 +35,24 @@ const App = () => {
         <Text style={styles.btnTextNewDate}>Nueva Cita</Text>
       </Pressable>
 
+      {patients.length === 0 ? 
+        <Text style={styles.noPatientsText}>No hay pacientes aún</Text>: 
+        <FlatList 
+          data={patients}
+          keyExtractor={(item) => item.id}
+          renderItem={({item})=>{
+            return(
+              <Patient item={item}/>
+            )
+          }}
+        />
+      }
+
       <Form
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         setPatients={setPatients}
-        patients = {patients}
+        patients={patients}
       />
     </View>
   );
