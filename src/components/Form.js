@@ -33,9 +33,12 @@ const Form = ({ modalVisible, setModalVisible, setPatients, patients}) => {
         'Error',
         'Todos los campos son obligatorios'
       )
+      return
     }
 
     setPatients([...patients, dataPatient])
+    setModalVisible(!modalVisible)
+    setDataPatient(dataPatientStruct)
   }
 
   return (
