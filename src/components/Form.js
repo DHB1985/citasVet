@@ -129,6 +129,15 @@ const Form = ({ modalVisible, setModalVisible}) => {
               numberOfLines={4}
             />
           </View>
+
+          <Pressable 
+            style={styles.btnNewDate}
+          >
+            <Text style={styles.btnNewDateText}>
+              Agregar Paciente
+            </Text>
+          </Pressable>
+
         </ScrollView>
       </View>
     </Modal>

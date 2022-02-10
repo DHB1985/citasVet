@@ -54,4 +54,19 @@ export const styles = StyleSheet.create({
   symptomInput: {
     height: 100,
   },
+  btnNewDate: {
+    marginVertical: 50,
+    backgroundColor: '#F59E0B',
+    paddingVertical: 15,
+    marginHorizontal: 30,
+    borderRadius: 10,
+  },
+  btnNewDateText: {
+    textAlign: 'center',
+    color: '#5827A4',
+    textTransform: 'uppercase',
+    fontWeight: '900',
+    fontSize: 16,
+
+  }
 });
