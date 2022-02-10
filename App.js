@@ -10,6 +10,7 @@ const App = () => {
   //Los Hooks se colocan en la parte superior, dentro de condicionales o después de un return
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [patients, setPatients] = useState([]);
 
   // setTimeout(() => {
   //   setModalVisible(true);
@@ -33,7 +34,12 @@ const App = () => {
         <Text style={styles.btnTextNewDate}>Nueva Cita</Text>
       </Pressable>
 
-      <Form modalVisible={modalVisible} setModalVisible={setModalVisible}/>
+      <Form
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        setPatients={setPatients}
+        patients = {patients}
+      />
     </View>
   );
 };

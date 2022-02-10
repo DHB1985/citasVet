@@ -7,13 +7,14 @@ import {
   TextInput,
   ScrollView,
   Pressable,
+  Alert,
 } from "react-native";
 
 import DatePicker from "react-native-date-picker";
 
 import { styles } from "./FormStyles";
 
-const Form = ({ modalVisible, setModalVisible}) => {
+const Form = ({ modalVisible, setModalVisible, setPatients, patients}) => {
   const dataPatientStruct = {
     patient: "",
     owner: "",
@@ -24,6 +25,18 @@ const Form = ({ modalVisible, setModalVisible}) => {
   };
 
   const [dataPatient, setDataPatient] = useState(dataPatientStruct);
+
+  const handleDate = () => {
+    //Validaciones (hacer una validacion por cada campo)
+    if([dataPatient.patient, dataPatient.owner, dataPatient.email, dataPatient.date, dataPatient.symptom].includes('')){
+      Alert.alert(
+        'Error',
+        'Todos los campos son obligatorios'
+      )
+    }
+
+    setPatients([...patients, dataPatient])
+  }
 
   return (
     <Modal animationType="slide" visible={modalVisible}>
@@ -132,6 +145,7 @@ const Form = ({ modalVisible, setModalVisible}) => {
 
           <Pressable 
             style={styles.btnNewDate}
+            onPress = {handleDate}
           >
             <Text style={styles.btnNewDateText}>
               Agregar Paciente
