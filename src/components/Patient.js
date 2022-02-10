@@ -1,6 +1,8 @@
 import React from "react";
 import { Text, View } from "react-native";
 
+import {styles} from './PatientStyles.js'
+
 const Patient = ({ item }) => {
   const { patient, date } = item;
 
@@ -17,9 +19,10 @@ const Patient = ({ item }) => {
   };
 
   return (
-    <View>
-      <Text>{patient}</Text>
-      <Text>{dateFormat(date)}</Text>
+    <View style={styles.container}>
+      <Text style={styles.label}>Paciente: </Text>
+      <Text style={styles.text}>{patient}</Text>
+      <Text style={styles.date}>{dateFormat(date)}</Text>
     </View>
   );
 };
