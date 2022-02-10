@@ -1,13 +1,27 @@
-import React from 'react'
-import { Text } from 'react-native'
+import React from "react";
+import { Text, View } from "react-native";
 
-const Patient = ({item}) => {
+const Patient = ({ item }) => {
+  const { patient, date } = item;
 
-    const {patient, date} = item
-console.log(item)
+  const dateFormat = (date) => {
+    const newDate = new Date(date);
+    const dateOptions = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+
+    return newDate.toLocaleDateString("es-ES", dateOptions);
+  };
+
   return (
-    <Text>{patient}</Text>
-  )
-}
+    <View>
+      <Text>{patient}</Text>
+      <Text>{dateFormat(date)}</Text>
+    </View>
+  );
+};
 
-export default Patient
+export default Patient;

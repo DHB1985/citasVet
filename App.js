@@ -38,6 +38,7 @@ const App = () => {
       {patients.length === 0 ? 
         <Text style={styles.noPatientsText}>No hay pacientes aún</Text>: 
         <FlatList 
+          style={styles.patientsList}
           data={patients}
           keyExtractor={(item) => item.id}
           renderItem={({item})=>{
