@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Modal,
@@ -14,7 +14,7 @@ import DatePicker from "react-native-date-picker";
 
 import { styles } from "./FormStyles";
 
-const Form = ({ modalVisible, setModalVisible, setPatients, patients}) => {
+const Form = ({ modalVisible, setModalVisible, setPatients, patients, patientToEdit}) => {
   const dataPatientStruct = {
     id: '',
     patient: "",
@@ -26,6 +26,12 @@ const Form = ({ modalVisible, setModalVisible, setPatients, patients}) => {
   };
 
   const [dataPatient, setDataPatient] = useState(dataPatientStruct);
+
+  useEffect(() => {
+    if (Object.keys(patientToEdit).length){
+      setDataPatient(patientToEdit)
+    }
+  }, [])
 
   const handleDate = () => {
     //Validaciones (hacer una validacion por cada campo)

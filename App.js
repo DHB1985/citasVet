@@ -64,6 +64,7 @@ const App = () => {
         setModalVisible={setModalVisible}
         setPatients={setPatients}
         patients={patients}
+        patientToEdit={patient}
       />
     </View>
   );
