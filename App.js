@@ -65,6 +65,7 @@ const App = () => {
         setPatients={setPatients}
         patients={patients}
         patientToEdit={patient}
+        setPatient={setPatient}
       />
     </View>
   );

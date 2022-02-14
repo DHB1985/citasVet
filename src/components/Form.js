@@ -14,9 +14,16 @@ import DatePicker from "react-native-date-picker";
 
 import { styles } from "./FormStyles";
 
-const Form = ({ modalVisible, setModalVisible, setPatients, patients, patientToEdit}) => {
+const Form = ({
+  modalVisible,
+  setModalVisible,
+  setPatients,
+  patients,
+  patientToEdit,
+  setPatient,
+}) => {
   const dataPatientStruct = {
-    id: '',
+    id: "",
     patient: "",
     owner: "",
     email: "",
@@ -28,26 +35,48 @@ const Form = ({ modalVisible, setModalVisible, setPatients, patients, patientToE
   const [dataPatient, setDataPatient] = useState(dataPatientStruct);
 
   useEffect(() => {
-    if (Object.keys(patientToEdit).length){
-      setDataPatient(patientToEdit)
+    if (Object.keys(patientToEdit).length) {
+      setDataPatient(patientToEdit);
     }
-  }, [])
+  }, []);
 
   const handleDate = () => {
     //Validaciones (hacer una validacion por cada campo)
-    if([dataPatient.patient, dataPatient.owner, dataPatient.email, dataPatient.date, dataPatient.symptom].includes('')){
-      Alert.alert(
-        'Error',
-        'Todos los campos son obligatorios'
-      )
-      return
+    if (
+      [
+        dataPatient.patient,
+        dataPatient.owner,
+        dataPatient.email,
+        dataPatient.date,
+        dataPatient.symptom,
+      ].includes("")
+    ) {
+      Alert.alert("Error", "Todos los campos son obligatorios");
+      return;
     }
-    const patient = {...dataPatient, id: Date.now()}
-    setDataPatient(patient)
-    setPatients([...patients, patient])
-    setModalVisible(!modalVisible)
-    setDataPatient(dataPatientStruct)
-  }
+
+    if (dataPatient.id) {
+      const updatedPatients = patients.map((patientState) =>
+        patientState.id === dataPatient.id ? dataPatient : patientState
+      );
+
+      setPatients(updatedPatients);
+      setPatient({});
+    } else {
+      const patient = { ...dataPatient, id: Date.now() };
+      setDataPatient(patient);
+      setPatients([...patients, patient]);
+    }
+
+    setModalVisible(!modalVisible);
+    setDataPatient(dataPatientStruct);
+  };
+
+  const handleClose = () => {
+    setModalVisible(!modalVisible);
+    setPatient({});
+    setDataPatient(dataPatientStruct);
+  };
 
   return (
     <Modal animationType="slide" visible={modalVisible}>
@@ -58,13 +87,8 @@ const Form = ({ modalVisible, setModalVisible, setPatients, patients, patientToE
             <Text style={styles.titleBold}>Cita</Text>
           </Text>
 
-          <Pressable 
-            style={styles.btnCancel}
-            onLongPress = {() => setModalVisible(!modalVisible)}
-          >
-            <Text style={styles.btnCancelText}>
-              X cancelar
-            </Text>
+          <Pressable style={styles.btnCancel} onLongPress={handleClose}>
+            <Text style={styles.btnCancelText}>X cancelar</Text>
           </Pressable>
 
           <View style={styles.inputContent}>
@@ -154,15 +178,9 @@ const Form = ({ modalVisible, setModalVisible, setPatients, patients, patientToE
             />
           </View>
 
-          <Pressable 
-            style={styles.btnNewDate}
-            onPress = {handleDate}
-          >
-            <Text style={styles.btnNewDateText}>
-              Agregar Paciente
-            </Text>
+          <Pressable style={styles.btnNewDate} onPress={handleDate}>
+            <Text style={styles.btnNewDateText}>Agregar Paciente</Text>
           </Pressable>
-
         </ScrollView>
       </View>
     </Modal>
