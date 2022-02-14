@@ -12,7 +12,12 @@ const App = () => {
 
   const [modalVisible, setModalVisible] = useState(false);
   const [patients, setPatients] = useState([]);
+  const [patient, setPatient] = useState({});
 
+  const editPatient = (id) => {
+    const patientEdit = patients.filter((patient) => patient.id === id);
+    setPatient(patientEdit[0]);
+  };
   // setTimeout(() => {
   //   setModalVisible(true);
   // }, 3000);
@@ -35,19 +40,24 @@ const App = () => {
         <Text style={styles.btnTextNewDate}>Nueva Cita</Text>
       </Pressable>
 
-      {patients.length === 0 ? 
-        <Text style={styles.noPatientsText}>No hay pacientes aún</Text>: 
-        <FlatList 
+      {patients.length === 0 ? (
+        <Text style={styles.noPatientsText}>No hay pacientes aún</Text>
+      ) : (
+        <FlatList
           style={styles.patientsList}
           data={patients}
           keyExtractor={(item) => item.id}
-          renderItem={({item})=>{
-            return(
-              <Patient item={item}/>
-            )
+          renderItem={({ item }) => {
+            return (
+              <Patient
+                item={item}
+                setModalVisible={setModalVisible}
+                editPatient={editPatient}
+              />
+            );
           }}
         />
-      }
+      )}
 
       <Form
         modalVisible={modalVisible}

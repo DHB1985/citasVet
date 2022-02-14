@@ -36,8 +36,9 @@ const Form = ({ modalVisible, setModalVisible, setPatients, patients}) => {
       )
       return
     }
-    setDataPatient({...dataPatient, id: Date.now()})
-    setPatients([...patients, dataPatient])
+    const patient = {...dataPatient, id: Date.now()}
+    setDataPatient(patient)
+    setPatients([...patients, patient])
     setModalVisible(!modalVisible)
     setDataPatient(dataPatientStruct)
   }
