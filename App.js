@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from "react";
-import { Text, View, Pressable, FlatList } from "react-native";
+import { Text, View, Pressable, FlatList, Alert } from "react-native";
 
 import Form from "./src/components/Form.js";
 import Patient from "./src/components/Patient.js";
@@ -15,6 +15,25 @@ const App = () => {
   const [patient, setPatient] = useState({});
 
   const editPatient = (id) => {
+    const patientEdit = patients.filter((patient) => patient.id === id);
+    setPatient(patientEdit[0]);
+  };
+
+  const deletePatient = id => {
+    Alert.alert(
+      '¿Deseas eliminar este paciente?',
+      'Un paciente eliminado no se puede recuperar',
+      [
+        { text: 'Cancelar'},
+        { text: 'Si, Eliminar!', onPress: ()=>{
+          const updatedPatients = patients.filter(patientState => 
+              patientState.id !== id
+            )
+
+            setPatients(updatedPatients)
+        }},
+      ]
+    )
     const patientEdit = patients.filter((patient) => patient.id === id);
     setPatient(patientEdit[0]);
   };
@@ -53,6 +72,7 @@ const App = () => {
                 item={item}
                 setModalVisible={setModalVisible}
                 editPatient={editPatient}
+                deletePatient={deletePatient}
               />
             );
           }}

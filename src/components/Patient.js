@@ -3,7 +3,7 @@ import { Text, View, Pressable } from "react-native";
 
 import { styles } from "./PatientStyles.js";
 
-const Patient = ({ item, setModalVisible, editPatient }) => {
+const Patient = ({ item, setModalVisible, editPatient, deletePatient }) => {
   const { patient, date, id } = item;
 
   const dateFormat = (date) => {
@@ -38,7 +38,7 @@ const Patient = ({ item, setModalVisible, editPatient }) => {
           <Text style={styles.btnText}>Editar</Text>
         </Pressable>
         <Pressable style={[styles.btn, styles.btnDelete]}>
-          <Text style={styles.btnText}>Eliminar</Text>
+          <Text style={styles.btnText} onLongPress={() => deletePatient(id)}>Eliminar</Text>
         </Pressable>
       </View>
     </View>
