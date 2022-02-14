@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from "react";
-import { Text, View, Pressable, FlatList, Alert } from "react-native";
+import { Text, View, Pressable, FlatList, Alert, Modal } from "react-native";
+import DataPatientModal from "./src/components/DataPatientModal.js";
 
 import Form from "./src/components/Form.js";
 import Patient from "./src/components/Patient.js";
@@ -13,27 +14,31 @@ const App = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [patients, setPatients] = useState([]);
   const [patient, setPatient] = useState({});
+  const [modalDataPatient, setModalDataPatient] = useState(false);
 
   const editPatient = (id) => {
     const patientEdit = patients.filter((patient) => patient.id === id);
     setPatient(patientEdit[0]);
   };
 
-  const deletePatient = id => {
+  const deletePatient = (id) => {
     Alert.alert(
-      '¿Deseas eliminar este paciente?',
-      'Un paciente eliminado no se puede recuperar',
+      "¿Deseas eliminar este paciente?",
+      "Un paciente eliminado no se puede recuperar",
       [
-        { text: 'Cancelar'},
-        { text: 'Si, Eliminar!', onPress: ()=>{
-          const updatedPatients = patients.filter(patientState => 
-              patientState.id !== id
-            )
+        { text: "Cancelar" },
+        {
+          text: "Si, Eliminar!",
+          onPress: () => {
+            const updatedPatients = patients.filter(
+              (patientState) => patientState.id !== id
+            );
 
-            setPatients(updatedPatients)
-        }},
+            setPatients(updatedPatients);
+          },
+        },
       ]
-    )
+    );
     const patientEdit = patients.filter((patient) => patient.id === id);
     setPatient(patientEdit[0]);
   };
@@ -73,6 +78,7 @@ const App = () => {
                 setModalVisible={setModalVisible}
                 editPatient={editPatient}
                 deletePatient={deletePatient}
+                setModalDataPatient={setModalDataPatient}
               />
             );
           }}
@@ -87,6 +93,10 @@ const App = () => {
         patientToEdit={patient}
         setPatient={setPatient}
       />
+
+      <Modal visible={modalDataPatient} animationType="fade">
+        <DataPatientModal />
+      </Modal>
     </View>
   );
 };

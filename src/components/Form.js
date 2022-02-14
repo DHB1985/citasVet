@@ -12,7 +12,7 @@ import {
 
 import DatePicker from "react-native-date-picker";
 
-import { styles } from "./FormStyles";
+import { styles } from "../Styles/FormStyles";
 
 const Form = ({
   modalVisible,
