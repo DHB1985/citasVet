@@ -38,7 +38,7 @@ const Form = ({
     if (Object.keys(patientToEdit).length) {
       setDataPatient(patientToEdit);
     }
-  }, []);
+  }, [patientToEdit]);
 
   const handleDate = () => {
     //Validaciones (hacer una validacion por cada campo)
@@ -83,7 +83,7 @@ const Form = ({
       <View style={styles.content}>
         <ScrollView>
           <Text style={styles.title}>
-            Nueva {""}
+           {patientToEdit.id ? 'Editar' : 'Nueva'} {""}
             <Text style={styles.titleBold}>Cita</Text>
           </Text>
 
@@ -179,7 +179,7 @@ const Form = ({
           </View>
 
           <Pressable style={styles.btnNewDate} onPress={handleDate}>
-            <Text style={styles.btnNewDateText}>Agregar Paciente</Text>
+            <Text style={styles.btnNewDateText}>{patientToEdit.id ? 'Editar' : 'Agregar'} Paciente</Text>
           </Pressable>
         </ScrollView>
       </View>
