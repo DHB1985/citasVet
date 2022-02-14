@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Pressable } from "react-native";
+import { Text, View, Pressable, SafeAreaView } from "react-native";
 
 import { styles } from "../Styles/PatientStyles.js";
 
@@ -31,12 +31,12 @@ const Patient = ({
 
   return (
     <Pressable onLongPress={() => setModalDataPatient(true)}>
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Text style={styles.label}>Paciente: </Text>
         <Text style={styles.text}>{patient}</Text>
         <Text style={styles.date}>{dateFormat(date)}</Text>
 
-        <View style={styles.btnContainer}>
+        <SafeAreaView style={styles.btnContainer}>
           <Pressable
             style={[styles.btn, styles.btnEdit]}
             onLongPress={handleEditPatient}
@@ -48,8 +48,8 @@ const Patient = ({
               Eliminar
             </Text>
           </Pressable>
-        </View>
-      </View>
+        </SafeAreaView>
+      </SafeAreaView>
     </Pressable>
   );
 };

@@ -4,6 +4,7 @@ import {
   Modal,
   Text,
   View,
+  SafeAreaView,
   TextInput,
   ScrollView,
   Pressable,
@@ -80,10 +81,10 @@ const Form = ({
 
   return (
     <Modal animationType="slide" visible={modalVisible}>
-      <View style={styles.content}>
+      <SafeAreaView style={styles.content}>
         <ScrollView>
           <Text style={styles.title}>
-           {patientToEdit.id ? 'Editar' : 'Nueva'} {""}
+            {patientToEdit.id ? "Editar" : "Nueva"} {""}
             <Text style={styles.titleBold}>Cita</Text>
           </Text>
 
@@ -91,7 +92,7 @@ const Form = ({
             <Text style={styles.btnCancelText}>X cancelar</Text>
           </Pressable>
 
-          <View style={styles.inputContent}>
+          <SafeAreaView style={styles.inputContent}>
             <Text style={styles.label}>Nombre Paciente</Text>
             <TextInput
               style={styles.input}
@@ -103,9 +104,9 @@ const Form = ({
                 setDataPatient({ ...dataPatient, patient: text })
               }
             />
-          </View>
+          </SafeAreaView>
 
-          <View style={styles.inputContent}>
+          <SafeAreaView style={styles.inputContent}>
             <Text style={styles.label}>Nombre Propietario</Text>
             <TextInput
               style={styles.input}
@@ -117,9 +118,9 @@ const Form = ({
                 setDataPatient({ ...dataPatient, owner: text })
               }
             />
-          </View>
+          </SafeAreaView>
 
-          <View style={styles.inputContent}>
+          <SafeAreaView style={styles.inputContent}>
             <Text style={styles.label}>e-mail Propietario</Text>
             <TextInput
               style={styles.input}
@@ -131,9 +132,9 @@ const Form = ({
                 setDataPatient({ ...dataPatient, email: text })
               }
             />
-          </View>
+          </SafeAreaView>
 
-          <View style={styles.inputContent}>
+          <SafeAreaView style={styles.inputContent}>
             <Text style={styles.label}>Teléfono Propietario</Text>
             <TextInput
               style={styles.input}
@@ -146,10 +147,10 @@ const Form = ({
               }
               maxLength={10}
             />
-          </View>
+          </SafeAreaView>
 
-          <View style={styles.inputContent}>
-            <View style={styles.dateContent}>
+          <SafeAreaView style={styles.inputContent}>
+            <SafeAreaView style={styles.dateContent}>
               <Text style={styles.label}>Fecha</Text>
               <DatePicker
                 date={dataPatient.date}
@@ -159,10 +160,10 @@ const Form = ({
                   setDataPatient({ ...dataPatient, date: date })
                 }
               />
-            </View>
-          </View>
+            </SafeAreaView>
+          </SafeAreaView>
 
-          <View style={styles.inputContent}>
+          <SafeAreaView style={styles.inputContent}>
             <Text style={styles.label}>Síntomas</Text>
             <TextInput
               style={[styles.input, styles.symptomInput]}
@@ -176,13 +177,15 @@ const Form = ({
               multiline={true}
               numberOfLines={4}
             />
-          </View>
+          </SafeAreaView>
 
           <Pressable style={styles.btnNewDate} onPress={handleDate}>
-            <Text style={styles.btnNewDateText}>{patientToEdit.id ? 'Editar' : 'Agregar'} Paciente</Text>
+            <Text style={styles.btnNewDateText}>
+              {patientToEdit.id ? "Editar" : "Agregar"} Paciente
+            </Text>
           </Pressable>
         </ScrollView>
-      </View>
+      </SafeAreaView>
     </Modal>
   );
 };

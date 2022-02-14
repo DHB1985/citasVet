@@ -1,6 +1,14 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from "react";
-import { Text, View, Pressable, FlatList, Alert, Modal } from "react-native";
+import {
+  Text,
+  View,
+  Pressable,
+  FlatList,
+  Alert,
+  Modal,
+  SafeAreaView,
+} from "react-native";
 import DataPatientModal from "./src/components/DataPatientModal.js";
 
 import Form from "./src/components/Form.js";
@@ -50,7 +58,7 @@ const App = () => {
   //const newDateHandler = () => console.log("diste click...");
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.title}>
         Administrador de Citas {""}
         <Text style={styles.titleBold}>Veterinaria</Text>
@@ -97,7 +105,7 @@ const App = () => {
       <Modal visible={modalDataPatient} animationType="fade">
         <DataPatientModal />
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -1,10 +1,12 @@
-import React from 'react'
-import { Text } from 'react-native'
+import React from "react";
+import { Text, View, SafeAreaView } from "react-native";
 
 const DataPatientModal = () => {
   return (
-    <Text>DataPatientModal</Text>
-  )
-}
+    <SafeAreaView>
+      <Text>DataPatientModal</Text>
+    </SafeAreaView>
+  );
+};
 
-export default DataPatientModal
+export default DataPatientModal;
