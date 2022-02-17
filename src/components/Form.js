@@ -17,7 +17,7 @@ import { styles } from "../Styles/FormStyles";
 
 const Form = ({
   modalVisible,
-  setModalVisible,
+  closeModal,
   setPatients,
   patients,
   patientToEdit,
@@ -69,12 +69,12 @@ const Form = ({
       setPatients([...patients, patient]);
     }
 
-    setModalVisible(!modalVisible);
+    closeModal();
     setDataPatient(dataPatientStruct);
   };
 
   const handleClose = () => {
-    setModalVisible(!modalVisible);
+    closeModal();
     setPatient({});
     setDataPatient(dataPatientStruct);
   };

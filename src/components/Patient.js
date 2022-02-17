@@ -2,6 +2,8 @@ import React from "react";
 import { Text, View, Pressable, SafeAreaView } from "react-native";
 
 import { styles } from "../Styles/PatientStyles.js";
+import { dateFormat } from "../utils/utils.js";
+
 
 const Patient = ({
   item,
@@ -9,28 +11,22 @@ const Patient = ({
   editPatient,
   deletePatient,
   setModalDataPatient,
+  setPatient,
 }) => {
   const { patient, date, id } = item;
-
-  const dateFormat = (date) => {
-    const newDate = new Date(date);
-    const dateOptions = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-
-    return newDate.toLocaleDateString("es-ES", dateOptions);
-  };
 
   const handleEditPatient = () => {
     setModalVisible(true);
     editPatient(id);
   };
 
+  const handleDataPatientModal = () =>{
+    setModalDataPatient(true)
+    setPatient(item)
+  }
+
   return (
-    <Pressable onLongPress={() => setModalDataPatient(true)}>
+    <Pressable onLongPress={handleDataPatientModal}>
       <SafeAreaView style={styles.container}>
         <Text style={styles.label}>Paciente: </Text>
         <Text style={styles.text}>{patient}</Text>

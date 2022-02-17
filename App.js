@@ -50,6 +50,10 @@ const App = () => {
     const patientEdit = patients.filter((patient) => patient.id === id);
     setPatient(patientEdit[0]);
   };
+
+  const closeModal = () =>{
+    setModalVisible(false)
+  }
   // setTimeout(() => {
   //   setModalVisible(true);
   // }, 3000);
@@ -84,6 +88,7 @@ const App = () => {
               <Patient
                 item={item}
                 setModalVisible={setModalVisible}
+                setPatient={setPatient}
                 editPatient={editPatient}
                 deletePatient={deletePatient}
                 setModalDataPatient={setModalDataPatient}
@@ -93,17 +98,23 @@ const App = () => {
         />
       )}
 
-      <Form
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-        setPatients={setPatients}
-        patients={patients}
-        patientToEdit={patient}
-        setPatient={setPatient}
-      />
+      {modalVisible && (
+        <Form
+          modalVisible={modalVisible}
+          closeModal={closeModal}
+          setPatients={setPatients}
+          patients={patients}
+          patientToEdit={patient}
+          setPatient={setPatient}
+        />
+      )}
 
       <Modal visible={modalDataPatient} animationType="fade">
-        <DataPatientModal />
+        <DataPatientModal
+          patient={patient}
+          setModalDataPatient={setModalDataPatient}
+          setPatient={setPatient}
+        />
       </Modal>
     </SafeAreaView>
   );
