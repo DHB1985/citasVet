@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import {
   Modal,
   Text,
-  View,
   SafeAreaView,
   TextInput,
   ScrollView,
@@ -69,14 +68,14 @@ const Form = ({
       setPatients([...patients, patient]);
     }
 
-    closeModal();
     setDataPatient(dataPatientStruct);
+    closeModal();
   };
 
   const handleClose = () => {
-    closeModal();
     setPatient({});
     setDataPatient(dataPatientStruct);
+    closeModal();
   };
 
   return (

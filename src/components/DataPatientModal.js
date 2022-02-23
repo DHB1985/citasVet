@@ -48,7 +48,7 @@ const DataPatientModal = ({ patient, setModalDataPatient, setPatient }) => {
 
         <View style={styles.field}>
           <Text style={styles.label}>Fecha Alta:</Text>
-          <Text style={styles.value}>{dateFormat(patient.owner)}</Text>
+          <Text style={styles.value}>{dateFormat(patient.date)}</Text>
         </View>
 
         <View style={styles.field}>
